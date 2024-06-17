@@ -1,0 +1,27 @@
+
+<div class="bg-white">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <ng-container *ngIf="books.length === 0">
+      <p class="text-lg text-gray-600 text-center">No Books found.</p>
+    </ng-container>
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <ng-container>
+        <a *ngFor="let book of books" (click)="openModal(book)" class="group relative">
+          <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-1 transition duration-300 ease-in-out">
+            <div class="bg-gradient-to-r from-blue-400 to-purple-500 h-64 flex items-center justify-center text-white text-3xl font-bold">
+              {{ book.name.substring(0, 1) }}
+            </div>
+            <div class="p-4">
+              <p class="text-lg font-semibold text-gray-900">{{ book.name }}</p>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50 rounded-lg">
+              <p class="text-white text-center">View Details</p>
+            </div>
+          </div>
+        </a>
+      </ng-container>
+    </div>
+  </div>
+  <app-book-modal *ngIf="isModalOpen" [product]="selectedProduct" (closeModal)="closeModal()"></app-book-modal>
+  </div>
+  

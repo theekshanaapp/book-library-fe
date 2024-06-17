@@ -1,0 +1,33 @@
+
+<div class="lg:w-4/12 mt-5 p-10 bg-white shadow-lg mx-auto rounded-lg">
+    <h3 class="text-3xl text-center font-semibold py-5">{{ bookId ? 'Update Book' : 'Add Book' }}</h3>
+    <form [formGroup]="bookForm" class="flex flex-col space-y-4">
+      <div class="flex flex-col">
+        <input formControlName="name" class="p-2 border border-gray-300 rounded" 
+            type="text" placeholder="Book Name" required>
+        <span *ngIf="bookForm.get('name')?.invalid && bookForm.get('name')?.touched" 
+            class="text-red-500 mt-1">*Book Name is required</span>
+      </div>
+      <div class="flex flex-col">
+        <input formControlName="isbn" class="p-2 border border-gray-300 rounded" 
+            type="text" placeholder="ISBN Number" required>
+        <span *ngIf="bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.touched" 
+            class="text-red-500 mt-1">*ISBN Number is required</span>
+      </div>
+      <div class="flex flex-col">
+        <select formControlName="author" class="p-2 border border-gray-300 rounded" required>
+          <option value="" disabled selected>Select Author</option>
+          <option *ngFor="let author of authors" [value]="author.id">{{ author.firstName }} {{ author.lastName }}</option>
+        </select>
+        <span *ngIf="bookForm.get('author')?.invalid && bookForm.get('author')?.touched" 
+            class="text-red-500 mt-1">*Author is required</span>
+      </div>
+      <button 
+        [disabled]="bookForm.invalid || bookForm.pristine" 
+        [class.disabled]="bookForm.invalid || bookForm.pristine"  
+        (click)="save()" class="p-2 bg-indigo-500 text-white rounded hover:bg-indigo-600">
+          {{ bookId ? 'Update Book' : 'Create Book' }}
+      </button>
+    </form>
+</div>
+  

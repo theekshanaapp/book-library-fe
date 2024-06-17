@@ -1,0 +1,21 @@
+<nav class="w-full p-4 pb-0 bg-indigo-500 shadow-lg flex flex-col space-y-4 md:space-y-0">
+    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+        <div (click)="navigateHome()" class="logo mb-4 md:mb-0">
+            <span class="text-gray-200 text-2xl md:text-4xl ml-2">Book Library</span>
+        </div>
+
+        <div class="search relative flex items-center">
+            <label for="search-books" class="sr-only">Search Books</label>
+            <span class="absolute left-3"><i class="fa fa-search font-light text-gray-600" aria-hidden="true"></i></span>
+            <input id="search-books" type="text" placeholder="Search Books" class="w-full md:w-96 p-2 pl-10 rounded-l text-gray-600" />
+            <button class="bg-slate-400 p-2 rounded-r text-white">Search</button>
+        </div>
+    </div>
+
+    <div class="nav-items flex flex-col md:flex-row md:justify-end md:items-center space-y-3 md:space-y-0 md:space-x-4">
+        <span routerLink="/" class="text-md cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Home</span>
+        <span routerLink="/author" class="text-md cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Authors</span>
+        <span routerLink="/book" class="text-md cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Books</span>
+    </div>
+</nav>
+  
