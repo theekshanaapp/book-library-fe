@@ -1,0 +1,81 @@
+<div class="flex flex-col p-5">
+    <div class="overflow-x-auto">
+      <h3 class="text-3xl text-center font-semibold py-5">AUTHORS</h3>
+      <div class="min-w-full inline-block align-middle">
+        <div class="flex justify-end mb-4">
+          <button
+            routerLink="/add-author"
+            class="ml-2 px-4 py-2 text-sm font-medium text-gray-700 bg-transparent border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100"
+          >
+            Add Author
+          </button>
+        </div>
+        <div class="border rounded-lg shadow overflow-hidden h-96">
+
+          <ng-container *ngIf="pagedItems.length === 0">
+            <div class="flex items-center justify-center h-full">
+              <p class="text-lg text-gray-600">No authors found.</p>
+            </div>
+          </ng-container>
+  
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                  First Name
+                </th>
+                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                  Last Name
+                </th>
+                <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr *ngFor="let item of pagedItems">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{{ item.firstName }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ item.lastName }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                  <button
+                    type="button"
+                    class="inline-flex mr-2 items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-red-600 hover:text-red-800 disabled:opacity-50 disabled:pointer-events-none"
+                    (click)="deleteAuthor(item)"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-green-600 hover:text-green-800 disabled:opacity-50 disabled:pointer-events-none"
+                    (click)="updateAuthor(item)"
+                  >
+                    Update
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <div class="pagination">
+        <button
+          class="ml-2 px-4 py-2 text-sm font-medium text-gray-700 bg-transparent border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100"
+          [disabled]="currentPage === 1"
+          (click)="prevPage()"
+        >
+          Previous
+        </button>
+        <span class="px-3">{{ currentPage }} / {{ totalPages }}</span>
+        <button
+          class="ml-2 px-4 py-2 text-sm font-medium text-gray-700 bg-transparent border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100"
+          [disabled]="currentPage === totalPages"
+          (click)="nextPage()"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+  
